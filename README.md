@@ -38,12 +38,8 @@
 - приёмочное тестирование,
 - дымовое тестирование,
 - функциональное тестирование,
-
-[Sitechco.ru.pdf](https://prod-files-secure.s3.us-west-2.amazonaws.com/797a3578-b90b-4828-8fe7-caba2e6a378a/9d8d2245-956e-43de-9e79-22bcc1bc7752/Sitechco.ru.pdf)
-
 - регрессионное тестирование.
 
-[регрес.pdf](https://prod-files-secure.s3.us-west-2.amazonaws.com/797a3578-b90b-4828-8fe7-caba2e6a378a/ed571416-1a60-4cb3-8e78-22a457bbd226/%D1%80%D0%B5%D0%B3%D1%80%D0%B5%D1%81.pdf)
 
 **Какие инструменты были применены:**
 
@@ -74,9 +70,6 @@ https://miro.com/app/board/uXjVMIYSHsk=/?share_link_id=205568272081
 - DevTools для воспроизведения запросов в рабочей среде;
 - Qase, Sitechko  для оформления функциональных проверок;
 - Postman для создания коллекции и автоматизации прогона;
-
-[Курсовая 2.postman_collection.json](https://prod-files-secure.s3.us-west-2.amazonaws.com/797a3578-b90b-4828-8fe7-caba2e6a378a/4077a76a-dfa6-476b-9c33-c59f219954f3/%D0%9A%D1%83%D1%80%D1%81%D0%BE%D0%B2%D0%B0%D1%8F_2.postman_collection.json)
-
 - Confluence для ведения тест-плана и отчета;
 - Jira для фиксирования баг-репортов.
   <br>
