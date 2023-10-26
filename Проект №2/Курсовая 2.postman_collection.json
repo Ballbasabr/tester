@@ -1,0 +1,883 @@
+{
+	"info": {
+		"_postman_id": "fa230f0c-d948-4ab9-a9d0-1ebf0e6f0482",
+		"name": "Курсовая 2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "28327576"
+	},
+	"item": [
+		{
+			"name": "Позитивное тестирование",
+			"item": [
+				{
+					"name": "Добавление личного события",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var key = \"ID\"\r",
+									"var value = pm.response.json().data.payload.id //Вместо id можно использовать другое поле  json\r",
+									"pm.collectionVariables.set(key, value)\r",
+									"\r",
+									"var key = \"startAt\"\r",
+									"var value = pm.response.json().data.startAt //Вместо id можно использовать другое поле  json\r",
+									"pm.collectionVariables.set(key, value)\r",
+									"\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "token_global={{Token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n \"backgroundColor\":\"#EBFDF2\",\r\n \"color\":\"#43B658\",\r\n \"description\":\"День ног\",\r\n \"title\":\"Сходить в спортзал\",\r\n \"startAt\":\"2023-08-20T18:30:00+03:00\",\r\n \"endAt\":\"2023-08-20T23:00:00+03:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}{{Ver}}schedule/createPersonal",
+							"host": [
+								"{{URL}}{{Ver}}schedule"
+							],
+							"path": [
+								"createPersonal"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Редактирование личного события",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var key = \"ID\"\r",
+									"var value = pm.response.json().data.payload.id //Вместо id можно использовать другое поле  json\r",
+									"pm.collectionVariables.set(key, value)\r",
+									"\r",
+									"var key = \"startAt\"\r",
+									"var value = pm.response.json().data.startAt //Вместо id можно использовать другое поле  json\r",
+									"pm.collectionVariables.set(key, value)\r",
+									"\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "token_global={{Token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"backgroundColor\":\"#EBFDF2\",\r\n\"color\":\"#43B658\",\r\n\"description\":\"хурму, овощи, памперсы\",\r\n\"title\":\"Купить\",\r\n\"startAt\":\"2023-08-20T18:30:00+03:00\",\r\n\"endAt\":\"2023-08-20T21:00:00+03:00\",\r\n\"id\":{{ID}},\r\n\"oldStartAt\":\"{{startAt}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}{{Ver}}schedule/updatePersonal",
+							"host": [
+								"{{URL}}{{Ver}}schedule"
+							],
+							"path": [
+								"updatePersonal"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Удаление личного события",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "token_global={{Token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "\r\n{\r\n\"id\":{{ID}},\r\n\"startAt\":\"{{startAt}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}{{Ver}}schedule/removePersonal",
+							"host": [
+								"{{URL}}{{Ver}}schedule"
+							],
+							"path": [
+								"removePersonal"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Добавление личного события в прошлом",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var key = \"ID2\"\r",
+									"var value = pm.response.json().data.payload.id //Вместо id можно использовать другое поле  json\r",
+									"pm.collectionVariables.set(key, value)\r",
+									"\r",
+									"var key = \"startAt2\"\r",
+									"var value = pm.response.json().data.startAt //Вместо id можно использовать другое поле  json\r",
+									"pm.collectionVariables.set(key, value)\r",
+									"\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "token_global={{Token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n \"backgroundColor\":\"#EBFDF2\",\r\n \"color\":\"#43B658\",\r\n \"description\":\"День ног\",\r\n \"title\":\"Сходить в спортзал\",\r\n \"startAt\":\"2023-04-20T18:30:00+03:00\",\r\n \"endAt\":\"2023-04-20T23:00:00+03:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}{{Ver}}schedule/createPersonal",
+							"host": [
+								"{{URL}}{{Ver}}schedule"
+							],
+							"path": [
+								"createPersonal"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Перенос личного события на 4 месяца в перёд",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var key = \"ID2\"\r",
+									"var value = pm.response.json().data.payload.id //Вместо id можно использовать другое поле  json\r",
+									"pm.collectionVariables.set(key, value)\r",
+									"\r",
+									"var key = \"startAt2\"\r",
+									"var value = pm.response.json().data.startAt //Вместо id можно использовать другое поле  json\r",
+									"pm.collectionVariables.set(key, value)\r",
+									"\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "token_global={{Token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"backgroundColor\":\"#EBFDF2\",\r\n\"color\":\"#43B658\",\r\n\"description\":\"День ног\",\r\n\"title\":\"Сходить в спортзал\",\r\n\"startAt\":\"2023-08-20T18:30:00+03:00\",\r\n\"endAt\":\"2023-08-20T21:00:00+03:00\",\r\n\"id\":{{ID2}},\r\n\"oldStartAt\":\"{{startAt2}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}{{Ver}}schedule/updatePersonal",
+							"host": [
+								"{{URL}}{{Ver}}schedule"
+							],
+							"path": [
+								"updatePersonal"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Добавление личного события на уже занятое время и дату",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var key = \"ID\"\r",
+									"var value = pm.response.json().data.payload.id //Вместо id можно использовать другое поле  json\r",
+									"pm.collectionVariables.set(key, value)\r",
+									"\r",
+									"var key = \"startAt\"\r",
+									"var value = pm.response.json().data.startAt //Вместо id можно использовать другое поле  json\r",
+									"pm.collectionVariables.set(key, value)\r",
+									"\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "token_global={{Token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n \"backgroundColor\":\"#EBFDF2\",\r\n \"color\":\"#43B658\",\r\n \"description\":\"Preferably with a girl\",\r\n \"title\":\"To meet new people\",\r\n \"startAt\":\"2023-08-20T18:30:00+03:00\",\r\n \"endAt\":\"2023-08-20T23:00:00+03:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}{{Ver}}schedule/createPersonal",
+							"host": [
+								"{{URL}}{{Ver}}schedule"
+							],
+							"path": [
+								"createPersonal"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Получение информации о событии",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "token_global={{Token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"from\":\"2023-08-20T00:00:00+03:00\",\r\n\"till\":\"2023-08-21T00:00:00+03:00\",\r\n\"onlyTypes\":[\"slot\"]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}{{Ver}}schedule/events",
+							"host": [
+								"{{URL}}{{Ver}}schedule"
+							],
+							"path": [
+								"events"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Удаление личного события",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "token_global={{Token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "\r\n{\r\n\"id\":{{ID}},\r\n\"startAt\":\"{{startAt}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}{{Ver}}schedule/removePersonal",
+							"host": [
+								"{{URL}}{{Ver}}schedule"
+							],
+							"path": [
+								"removePersonal"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Удаление личного события",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "token_global={{Token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "\r\n{\r\n\"id\":{{ID2}},\r\n\"startAt\":\"{{startAt2}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}{{Ver}}schedule/removePersonal",
+							"host": [
+								"{{URL}}{{Ver}}schedule"
+							],
+							"path": [
+								"removePersonal"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Негативное тестирование",
+			"item": [
+				{
+					"name": "Добавление личных событий с невалидным названием",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var key = \"ID\"\r",
+									"var value = pm.response.json().data.payload.id //Вместо id можно использовать другое поле  json\r",
+									"pm.collectionVariables.set(key, value)\r",
+									"\r",
+									"var key = \"startAt\"\r",
+									"var value = pm.response.json().data.startAt //Вместо id можно использовать другое поле  json\r",
+									"pm.collectionVariables.set(key, value)\r",
+									"\r",
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "token_global={{Token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n \"backgroundColor\":\"#EBFDF2\",\r\n \"color\":\"#43B658\",\r\n \"description\":\"測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試測試\",\r\n \"title\":\"!@#$%^!@#$%^!@#$%^!@#$%^!@#$%^!@#$%^\",\r\n \"startAt\":\"2023-08-20T18:30:00+03:00\",\r\n \"endAt\":\"2023-08-20T23:00:00+03:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}{{Ver}}schedule/createPersonal",
+							"host": [
+								"{{URL}}{{Ver}}schedule"
+							],
+							"path": [
+								"createPersonal"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Удаление личного события",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "token_global={{Token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "\r\n{\r\n\"id\":{{ID}},\r\n\"startAt\":\"{{startAt}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}{{Ver}}schedule/removePersonal",
+							"host": [
+								"{{URL}}{{Ver}}schedule"
+							],
+							"path": [
+								"removePersonal"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Добавление личного события с цветом которого нет в списке предложенных",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var key = \"ID\"\r",
+									"var value = pm.response.json().data.payload.id //Вместо id можно использовать другое поле  json\r",
+									"pm.collectionVariables.set(key, value)\r",
+									"\r",
+									"var key = \"startAt\"\r",
+									"var value = pm.response.json().data.startAt //Вместо id можно использовать другое поле  json\r",
+									"pm.collectionVariables.set(key, value)\r",
+									"\r",
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "token_global={{Token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n \"backgroundColor\":\"#FF0000\",\r\n \"color\":\"#800000\",\r\n \"description\":\"День ног\",\r\n \"title\":\"Сходить в спортзал\",\r\n \"startAt\":\"2023-08-20T18:30:00+03:00\",\r\n \"endAt\":\"2023-08-20T23:00:00+03:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}{{Ver}}schedule/createPersonal",
+							"host": [
+								"{{URL}}{{Ver}}schedule"
+							],
+							"path": [
+								"createPersonal"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Удаление личного события Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "token_global={{Token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "\r\n{\r\n\"id\":{{ID}},\r\n\"startAt\":\"{{startAt}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}{{Ver}}schedule/removePersonal",
+							"host": [
+								"{{URL}}{{Ver}}schedule"
+							],
+							"path": [
+								"removePersonal"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Добавление личного события с периодом больше чем на месяц",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var key = \"ID\"\r",
+									"var value = pm.response.json().data.payload.id //Вместо id можно использовать другое поле  json\r",
+									"pm.collectionVariables.set(key, value)\r",
+									"\r",
+									"var key = \"startAt\"\r",
+									"var value = pm.response.json().data.startAt //Вместо id можно использовать другое поле  json\r",
+									"pm.collectionVariables.set(key, value)\r",
+									"\r",
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "token_global={{Token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n \"backgroundColor\":\"#EBFDF2\",\r\n \"color\":\"#43B658\",\r\n \"description\":\"День ног\",\r\n \"title\":\"Сходить в спортзал\",\r\n \"startAt\":\"2023-08-20T18:30:00+03:00\",\r\n \"endAt\":\"2023-09-21T23:00:00+03:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}{{Ver}}schedule/createPersonal",
+							"host": [
+								"{{URL}}{{Ver}}schedule"
+							],
+							"path": [
+								"createPersonal"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Удаление личного события",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "token_global={{Token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "\r\n{\r\n\"id\":{{ID}},\r\n\"startAt\":\"{{startAt}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}{{Ver}}schedule/removePersonal",
+							"host": [
+								"{{URL}}{{Ver}}schedule"
+							],
+							"path": [
+								"removePersonal"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Добавление личных событий в следующем году",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var key = \"ID\"\r",
+									"var value = pm.response.json().data.payload.id //Вместо id можно использовать другое поле  json\r",
+									"pm.collectionVariables.set(key, value)\r",
+									"\r",
+									"var key = \"startAt\"\r",
+									"var value = pm.response.json().data.startAt //Вместо id можно использовать другое поле  json\r",
+									"pm.collectionVariables.set(key, value)\r",
+									"\r",
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Body matches string\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"{\r",
+									"    \"data\": null,\r",
+									"    \"errors\": [\r",
+									"        {\r",
+									"            \"property\": \"endAt\",\r",
+									"            \"error\": {\r",
+									"                \"message\": \"Exceeds the allowed end of the event. Event end must not be more that + 1 year\",\r",
+									"                \"code\": \"domain_error\",\r",
+									"                \"extra\": null\r",
+									"            }\r",
+									"        }\r",
+									"    ]\r",
+									"}\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "token_global={{Token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n \"backgroundColor\":\"#EBFDF2\",\r\n \"color\":\"#43B658\",\r\n \"description\":\"День ног\",\r\n \"title\":\"Сходить в спортзал\",\r\n \"startAt\":\"2024-08-20T18:30:00+03:00\",\r\n \"endAt\":\"2024-08-20T23:00:00+03:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}{{Ver}}schedule/createPersonal",
+							"host": [
+								"{{URL}}{{Ver}}schedule"
+							],
+							"path": [
+								"createPersonal"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "Token",
+			"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ1c2VySWQiOjE0NTk2OTMzLCJpZGVudGl0eSI6InRlc3QudHN0MzE3QHNreWVuZy5ydSIsImlkZW50aXR5TG9naW4iOm51bGwsImlkZW50aXR5RW1haWwiOiJ0ZXN0LnRzdDMxN0Bza3llbmcucnUiLCJpZGVudGl0eVBob25lIjpudWxsLCJuYW1lIjoiXHUwNDEwXHUwNDQxXHUwNDQyXHUwNDQ1XHUwNDM4XHUwNDNhIiwic3VybmFtZSI6Ilx1MDQxMFx1MDQzY1x1MDQzOFx1MDQ0MFx1MDQ0Zlx1MDQzZCIsImVtYWlsIjoidGVzdC50c3QzMTdAc2t5ZW5nLnJ1IiwidWlMYW5ndWFnZSI6InJ1IiwibG9jYWxlIjoicnUiLCJzZXJ2aWNlTG9jYWxlIjpudWxsLCJ1YXMiOjMwLCJqd3RUeXBlIjoxLCJqdGkiOiJPeWowUjNBaTRzNGZoQ01NS0t4MjdqSFRUS1NuYnZWZCIsImJyYW5kIjpudWxsLCJleHAiOjE2OTI0ODM2MzAsImF2YXRhclVybCI6Imh0dHBzOlwvXC9hdXRoLWF2YXRhcnMtc2t5ZW5nLmltZ2l4Lm5ldFwvMTQ1OTY5MzNcLzk4ZjZiZWI1LWYwN2ItNDFlYi04YmMyLTQ1NzE0MGE3NDg4Mz9hdXRvPWZvcm1hdCUyQ2VuaGFuY2UmZml0PWNyb3AmaD0yMDAmaXhsaWI9cGhwLTIuMS4xJnE9NzUmc2F0PTgmc2hhcnA9MTAmdmliPTgmdz0yMDAiLCJhSXNTdHJvbmciOnRydWUsImFUeXBlIjoiVVNFUk5BTUVfUEFTU1dPUkQiLCJhVGltZSI6MTY5MjM5NzIyNywicm9sZXMiOlsiUk9MRV9URUFDSEVSX0NBTkRJREFURSIsIlJPTEVfVEVBQ0hFUl9DQU5ESURBVEVfQkFTRV9BQ0NFU1MiLCJST0xFX1RUQ19VU0FHRSIsIlJPTEVfVklNQk9YX1RFQUNIRVJfVVNBR0UiLCJST0xFX1RFQUNIRVIiLCJST0xFX0NSTTJfVEVBQ0hFUl9BQ0NFU1MiLCJST0xFX01BVEhfVEVBQ0hFUiIsIlJPTEVfTUFUSF9DT05URU5UX1RIRU1FX1ZJRVciXX0.nTKCWm9MLWL7KKPEkawg3i2IZiQmfR1HT42QskJEpaCp_n67EjX06DtVfo0vF2lMpQOgJ4-1jS0se5H1pn_A6VayCrBkVf5NpW0TYXnbxPcMQbCPqH2dU_oIjG1ufGf1tkWL_rOlWeAEI00hT_DJ2ROEPZjQzJid1frKuGuHLo-2PX76dkC1XkHxd1KPso-HbslAOaZin0tG6O8NG2qyW_-23-U67b69tLjlHcQ_RUcqI_gZj47VjSNiq6Cs0pLA7nGSGN4P9J4743Gfx4_eJF_Hw44H-ttGbUJ24tUTXGTvutfGKN7Z_CPFRxNxOroOyfWf-COh0hQwBpUWKFPj5see1ke7--sScfpFLh19OVf_k5jQc-Nyh90V_7GKU1s-L1ISdspCe8TPQVxBDXvppSZ8IsxadhNOIHFIDNDifik9aMnQWa32puRMnZWWkCD861k7pu7PNbicmfqkQFIBkHhRA2tf604s4ImfKI8pQbQ0PjTbW-Gkubrr7L10Pn2SCUAjN6d84VrNrW2Evh19lFZh39irCcGIfgI6AVRKOZZ9itPJgtyn9V25qqEprcdllWVZqIbDm82qkVMKANFDkUfNODy5rs5R0PisvEXMNW14UQhqIx8nGUXPrGDHgoJubERCFlnRolsucWSkSJ5jR4PZIpBAY7-L3IcYUnTagaU",
+			"type": "string"
+		},
+		{
+			"key": "URL",
+			"value": "https://api-teachers.skyeng.ru/",
+			"type": "string"
+		},
+		{
+			"key": "Ver",
+			"value": "v2/",
+			"type": "string"
+		},
+		{
+			"key": "ID",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "startAt",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "ID2",
+			"value": ""
+		},
+		{
+			"key": "startAt2",
+			"value": ""
+		}
+	]
+}
